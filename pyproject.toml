@@ -1,6 +1,6 @@
 [project]
 name = "text-analysis"
-version = "0.1.1"
+version = "0.1.2"
 description = "A Python package for text summarization"
 authors = [{name = "Gerixmus"}]
 readme = "README.md"

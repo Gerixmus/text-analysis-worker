@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/Gerixmus/text-analysis-worker/compare/v0.1.1...v0.1.2) (2025-07-07)
+
+
+### Features
+
+* summarize logic ([#4](https://github.com/Gerixmus/text-analysis-worker/issues/4)) ([65d0060](https://github.com/Gerixmus/text-analysis-worker/commit/65d0060145861179c504786c329c99de747ddd79))
+
 ## [0.1.1](https://github.com/Gerixmus/text-analysis-worker/compare/v0.1.0...v0.1.1) (2025-07-07)
 
 
