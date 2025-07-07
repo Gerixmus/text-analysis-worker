@@ -1,6 +1,6 @@
 from transformers import pipeline
 
-summarizer_model = pipeline("summarization") 
+summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
 
 TEXT = """ New York (CNN)When Liana Barrientos was 23 years old, she got married in Westchester County, New York.
 A year later, she got married again in Westchester County, but to a different man and without divorcing her first husband.
@@ -21,6 +21,6 @@ Her eighth husband, Rashid Rajput, was deported in 2006 to his native Pakistan a
 If convicted, Barrientos faces up to four years in prison.  Her next court appearance is scheduled for May 18.
 """
 
-summarized_text = summarizer_model(TEXT, max_length = 130, min_length = 30, do_sample = False)
+summarized_text = summarizer(TEXT, max_length = 130, min_length = 30, do_sample = False)
 
-print(summarized_text)
+print(summarized_text[0]['summary_text'])
