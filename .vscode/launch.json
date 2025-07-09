@@ -10,7 +10,7 @@
             "request": "launch",
             "cwd": "${workspaceFolder}/src",
             "module": "text_analysis.main",
-            "args": []
+            "args": ["--in","C:/Users/Gabriel/Desktop/test.txt"]
         }
     ]
 }

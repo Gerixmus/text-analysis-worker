@@ -1,11 +1,21 @@
 from text_analysis.summarize import summarize
+from pathlib import Path
 import argparse
 
-parser = argparse.ArgumentParser()
-parser.add_argument("file", help="text file you want to summarize")
-args = parser.parse_args()
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--in", dest="input_path", required=True, help="Path to input text file")
+    args = parser.parse_args()
 
-f = open(args.file)
+    input_path = Path(args.input_path)
+    if not input_path.exists():
+        raise FileNotFoundError(f"Input file does not exist: {input_path}")
+    
+    with open(input_path, "r", encoding="utf-8") as f:
+        text = f.read()
+        output = summarize(text)
+    
+    print(output)
 
-summary = summarize(f.read())
-print(summary)
+if __name__ == "__main__":
+    main()
