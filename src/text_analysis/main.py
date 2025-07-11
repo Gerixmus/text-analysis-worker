@@ -1,4 +1,4 @@
-from text_analysis.summarize import summarize
+from text_analysis.summarize import Summarizer
 from pathlib import Path
 import argparse
 from google.cloud import storage
@@ -11,6 +11,8 @@ def main():
     for bucket in buckets:
         print(bucket.name)
 
+    summarizer = Summarizer("facebook/bart-large-cnn")
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--in", dest="input_path", required=True, help="Path to input text file")
     parser.add_argument("--out", dest="output_path", required=True, help="Path to output text file")
@@ -22,7 +24,7 @@ def main():
     
     with open(input_path, "r", encoding="utf-8") as f:
         text = f.read()
-        output = summarize(text)
+        output = summarizer.summarize(text)
 
     output_path = Path(args.output_path)
     with open(output_path, "w") as f:
