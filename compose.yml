@@ -1,0 +1,6 @@
+services:
+  text-analysis:
+    build: .
+    volumes:
+      - $GCLOUD_CONFIG_PATH:/root/.config/gcloud
+    command: ["--in", "input.txt", "--out", "output.txt"]
