@@ -8,9 +8,14 @@
             "name": "Python Debugger: Module",
             "type": "debugpy",
             "request": "launch",
-            "cwd": "${workspaceFolder}/src",
-            "module": "text_analysis.main",
-            "args": ["--in","input.txt", "--out", "output.txt"]
+            "module": "uvicorn",
+            "args": [
+                "text_analysis.main:app",
+                "--host", "127.0.0.1",
+                "--port", "8000",
+                "--reload"
+            ],
+            "cwd": "${workspaceFolder}/src"
         }
     ]
 }
