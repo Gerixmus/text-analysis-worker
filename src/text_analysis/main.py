@@ -1,30 +1,30 @@
 from text_analysis.summarize import Summarizer
-from pathlib import Path
 import argparse
 from google.cloud import storage
+import time
+from fastapi import FastAPI
 
-def main():
-    client  = storage.Client(project="text-analysis-465423")
-    bucket = client.bucket("text-analysis-input")
+model_start = time.perf_counter()
+summarizer = Summarizer("google-t5/t5-small")
+model_end = time.perf_counter()
+print(f"Model load time: {model_end-model_start:4f}")
 
-    summarizer = Summarizer("facebook/bart-large-cnn")
+app = FastAPI()
+client  = storage.Client(project="text-analysis-465423")
+bucket = client.bucket("text-analysis-input")
 
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--in", dest="input_blob_name", required=True, help="Blob name")
-    parser.add_argument("--out", dest="output_blob_name", required=True, help="Blob name")
-    args = parser.parse_args()
-
-    input_blob_name = args.input_blob_name
-    input_blob = bucket.blob(input_blob_name)
+@app.post("/summarize")
+def summarize_file(input_file: str, output_file: str):
+    input_blob = bucket.blob(input_file)
 
     with input_blob.open("r", encoding="utf-8") as f:
         text = str(f.read())
+        summarize_start = time.perf_counter()
         output = summarizer.summarize(text)
+        summarize_end = time.perf_counter()
+        print(f"Summarize time: {summarize_end-summarize_start:4f}")
 
-    output_blob_name = args.output_blob_name
-    output_blob = bucket.blob(output_blob_name)
-
+    output_blob = bucket.blob(output_file)
     output_blob.upload_from_string(output)
 
-if __name__ == "__main__":
-    main()
+    return { "summary": output }
