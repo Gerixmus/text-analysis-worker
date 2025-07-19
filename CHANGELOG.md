@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/Gerixmus/text-analysis-worker/compare/v0.1.2...v0.1.3) (2025-07-19)
+
+
+### Features
+
+* service logic ([#9](https://github.com/Gerixmus/text-analysis-worker/issues/9)) ([f94e083](https://github.com/Gerixmus/text-analysis-worker/commit/f94e0838a4b1b6bc753cba0ef5466d251adaac11))
+
 ## [0.1.2](https://github.com/Gerixmus/text-analysis-worker/compare/v0.1.1...v0.1.2) (2025-07-07)
 
 
